@@ -1,6 +1,8 @@
 import { DataSource } from "typeorm";
 require("dotenv").config({ path: "./env" });
 import { User } from "./entities/User";
+import { Product } from "./entities/Product";
+import { Order } from "./entities/Order";
 
 const main = async () => {
   try {
@@ -11,7 +13,7 @@ const main = async () => {
       username: process.env.USERNAME,
       password: undefined,
       database: process.env.DB_NAME,
-      entities: [User],
+      entities: [User, Product, Order],
       synchronize: true,
     });
 
