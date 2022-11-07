@@ -3,6 +3,10 @@ require("dotenv").config({ path: "./env" });
 import { User } from "./entities/User";
 import { Product } from "./entities/Product";
 import { Order } from "./entities/Order";
+import express from "express";
+import { createUserRouter } from "./routes/createUser";
+
+const app = express();
 
 const main = async () => {
   try {
@@ -13,12 +17,19 @@ const main = async () => {
       username: process.env.USERNAME,
       password: undefined,
       database: process.env.DB_NAME,
-      entities: [User, Product, Order],
+      entities: [User, Product],
       synchronize: true,
     });
 
     let connection = await datasource.initialize();
     console.log("Conntected to database");
+
+    app.use(express.json());
+    app.use(createUserRouter);
+
+    app.listen(8080, () => {
+      console.log("Now running on port 8080");
+    });
   } catch (error) {
     console.error(error);
     throw new Error("Unable to connect to db");

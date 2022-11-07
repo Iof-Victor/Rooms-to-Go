@@ -5,15 +5,15 @@ export class Product extends BaseEntity {
   @PrimaryColumn()
   id: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   productType: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: false })
   price: number;
 
   @Column({ unique: true })
   productName: string;
 
-  @Column({ unique: true })
+  @Column({ nullable: true })
   image: string;
 }
