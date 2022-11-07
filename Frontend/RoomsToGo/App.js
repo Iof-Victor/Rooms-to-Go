@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet,Button} from 'react-native';
 
 const App = () => {
   return (
     <View style={styles.sectionContainer}>
       <Text style={styles.sectionTitle}>Welcome App</Text>
+      <Button  onPress={()=>console.log('lessss goo')} title="Test Button"/>
     </View>
   );
 };
