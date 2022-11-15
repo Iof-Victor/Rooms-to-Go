@@ -1,12 +1,15 @@
 import React from 'react';
-import {Text, View, StyleSheet,Button} from 'react-native';
+import {Text, View, StyleSheet, Button} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 
 const App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Welcome App</Text>
-      <Button  onPress={()=>console.log('lessss goo')} title="Test Button"/>
-    </View>
+    <NavigationContainer>
+      <View style={styles.sectionContainer}>
+        <Text style={styles.sectionTitle}>Welcome App</Text>
+        <Button onPress={() => console.log('lessss goo')} title="Test Button" />
+      </View>
+    </NavigationContainer>
   );
 };
 
