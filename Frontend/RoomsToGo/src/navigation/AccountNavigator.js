@@ -29,6 +29,7 @@ export const AccountNavigator = () => {
     // }}>
     >
       <Stack.Screen name="Log In" component={AuthScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
     </Stack.Navigator>
   );
 };
