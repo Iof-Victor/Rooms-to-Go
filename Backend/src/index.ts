@@ -4,7 +4,7 @@ import { User } from "./entities/User";
 import { Product } from "./entities/Product";
 import { Order } from "./entities/Order";
 import express from "express";
-import { createUserRouter } from "./routes/createUser";
+import { createUserRouter } from "./routes/userRoutes/createUser";
 
 const app = express();
 
