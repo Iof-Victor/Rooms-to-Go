@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import AuthScreen from '../Screens/AuthScreen';
-
+import RegisterScreen from '../Screens/RegisterScreen';
 const Stack = createStackNavigator();
 
 export const AccountNavigator = () => {
@@ -29,6 +29,7 @@ export const AccountNavigator = () => {
     // }}>
     >
       <Stack.Screen name="Log In" component={AuthScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
     </Stack.Navigator>
   );
 };
