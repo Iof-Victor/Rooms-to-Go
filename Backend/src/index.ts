@@ -9,19 +9,19 @@ import { productRouter } from "./routes/products.routes";
 
 const app = express();
 
+export const datasource = new DataSource({
+  type: "postgres",
+  host: process.env.HOST,
+  port: parseInt(process.env.PORT || ""),
+  username: process.env.USERNAME,
+  password: undefined,
+  database: process.env.DB_NAME,
+  entities: [User, Product],
+  synchronize: true,
+});
+
 const main = async () => {
   try {
-    let datasource = new DataSource({
-      type: "postgres",
-      host: process.env.HOST,
-      port: parseInt(process.env.PORT || ""),
-      username: process.env.USERNAME,
-      password: undefined,
-      database: process.env.DB_NAME,
-      entities: [User, Product],
-      synchronize: true,
-    });
-
     let connection = await datasource.initialize();
     console.log("Conntected to database");
 
