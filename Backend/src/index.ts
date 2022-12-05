@@ -4,7 +4,7 @@ import { User } from "./entities/User";
 import { Product } from "./entities/Product";
 import { Order } from "./entities/Order";
 import express from "express";
-import { createUserRouter } from "./routes/userRoutes/createUser";
+import { userRouter } from "./routes/userRoutes/users.routes";
 
 const app = express();
 
@@ -25,7 +25,7 @@ const main = async () => {
     console.log("Conntected to database");
 
     app.use(express.json());
-    app.use(createUserRouter);
+    app.use(userRouter);
 
     app.listen(8080, () => {
       console.log("Now running on port 8080");

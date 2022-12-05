@@ -5,4 +5,6 @@ const usersController = require("../../controllers/users.controller");
 
 router.post("/api/createUser", usersController.register);
 
-export { router as createUserRouter };
+router.post("/api/loginUser", usersController.login);
+
+export { router as userRouter };

@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import { User } from "../entities/User";
 const bcrypt = require("bcrypt");
 const router = express.Router();
+import { isEmpty } from "class-validator";
 
 const register = async (req: Request, res: Response, next: any) => {
   const {
@@ -52,6 +53,36 @@ const register = async (req: Request, res: Response, next: any) => {
   }
 };
 
+const login = async (req: Request, res: Response) => {
+  const { username, password } = req.body;
+
+  try {
+    let errors: any = {};
+
+    if (isEmpty(username) || isEmpty(password)) {
+      return res.status(400).json("Username/password must not be empty!");
+    }
+
+    const user = await User.findOne({ where: { username: username } });
+    if (!user) {
+      return res.status(401).send("Invalid username!");
+    }
+
+    if (user) {
+      const hashedPassword = await bcrypt.compare(password, user.password);
+
+      if (!hashedPassword) return res.status(401).json("Invalid password!");
+
+      return res.json(user);
+    }
+    return res.status(500).json("error");
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+};
+
 module.exports = {
   register,
+  login,
 };

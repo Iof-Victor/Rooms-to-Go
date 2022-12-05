@@ -1,8 +1,9 @@
 import { Entity, BaseEntity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { IsEmail, Length } from "class-validator";
 
 @Entity("users")
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: number;
 
   @Column({ nullable: true })
@@ -11,16 +12,19 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   lastName: string;
 
+  @Length(3, 16, { message: "Must be at least 3 characters long" })
   @Column({ unique: true })
   username: string;
 
+  @IsEmail(undefined, { message: "Must be a valid email" })
+  @Length(1, 255, { message: "Must not be empty" })
   @Column({
     unique: true,
   })
   email: string;
 
   @Column({
-    unique: true,
+    unique: false,
   })
   password: string;
 
