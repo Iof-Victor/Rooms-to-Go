@@ -1,33 +1,30 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomePageScreen from '../Screens/HomePageScreen';
+import Header from '../Components/Header';
+import ProductsScreen from '../Screens/ProductsScreen';
+import {AppRoute} from './AppRoutes';
 
 const Stack = createStackNavigator();
 
 export const HomePageNavigator = () => {
   return (
     <Stack.Navigator
-    //   screenOptions={{
-    //     header: ({scene, previous, navigation}) => {
-    //       const {options} = scene.descriptor;
-    //       const title =
-    //         options.headerTitle !== undefined
-    //           ? options.headerTitle
-    //           : options.title !== undefined
-    //           ? options.title
-    //           : scene.route.name;
-    //       return (
-    //         <Header
-    //           title={title}
-    //           leftButton={previous ? true : false}
-    //           style={[options.headerStyle, {zIndex: 9999}]}
-    //           navigation={navigation}
-    //         />
-    //       );
-    //     },
-    //   }}>
-    >
-      <Stack.Screen name="Home" component={HomePageScreen} />
+      screenOptions={{
+        header: ({navigation, options}) => {
+          return <Header navigation={navigation} title={options?.title} />;
+        },
+      }}>
+      <Stack.Screen
+        name={AppRoute.HOME}
+        component={HomePageScreen}
+        options={{title: 'Home'}}
+      />
+      <Stack.Screen
+        name="ProductsPage"
+        component={ProductsScreen}
+        options={{title: 'Products'}}
+      />
     </Stack.Navigator>
   );
 };
