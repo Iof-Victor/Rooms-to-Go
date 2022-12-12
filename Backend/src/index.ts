@@ -6,6 +6,8 @@ import { Order } from "./entities/Order";
 import express from "express";
 import { userRouter } from "./routes/users.routes";
 import { productRouter } from "./routes/products.routes";
+import { cartRouter } from "./routes/carts.routes";
+import { Cart } from "./entities/Cart";
 
 const app = express();
 
@@ -16,7 +18,7 @@ export const datasource = new DataSource({
   username: process.env.USERNAME,
   password: undefined,
   database: process.env.DB_NAME,
-  entities: [User, Product],
+  entities: [User, Product, Cart],
   synchronize: true,
 });
 
@@ -28,6 +30,7 @@ const main = async () => {
     app.use(express.json());
     app.use(userRouter);
     app.use(productRouter);
+    app.use(cartRouter);
 
     app.listen(8080, () => {
       console.log("Now running on port 8080");

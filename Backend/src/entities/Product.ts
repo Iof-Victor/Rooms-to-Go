@@ -1,4 +1,11 @@
-import { Entity, BaseEntity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  BaseEntity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+} from "typeorm";
+import { Cart } from "./Cart";
 
 @Entity("products")
 export class Product extends BaseEntity {
@@ -19,4 +26,7 @@ export class Product extends BaseEntity {
 
   @Column({ nullable: true })
   image: string;
+
+  @ManyToMany(() => Cart)
+  carts: Cart[];
 }

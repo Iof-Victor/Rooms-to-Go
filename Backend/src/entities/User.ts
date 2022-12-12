@@ -1,5 +1,13 @@
-import { Entity, BaseEntity, Column, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  BaseEntity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  OneToOne,
+} from "typeorm";
 import { IsEmail, Length } from "class-validator";
+import { Cart } from "./Cart";
 
 @Entity("users")
 export class User extends BaseEntity {
