@@ -3,17 +3,14 @@ import {Text, View, StyleSheet, Button} from 'react-native';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {AppNavigator} from './src/navigation/app.navigator';
+import {AppRoute} from './src/navigation/AppRoutes';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <AppNavigator>
+      <AppNavigator initialRouteName={AppRoute.HOME}>
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Welcome App</Text>
-          <Button
-            onPress={() => console.log('lessss goo')}
-            title="Test Button"
-          />
         </View>
       </AppNavigator>
     </NavigationContainer>

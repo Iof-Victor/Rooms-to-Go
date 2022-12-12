@@ -2,34 +2,26 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import AuthScreen from '../Screens/AuthScreen';
 import RegisterScreen from '../Screens/RegisterScreen';
+import Header from '../Components/Header';
+import MyAccountScreen from '../Screens/MyAccountScreen';
+
 const Stack = createStackNavigator();
 
 export const AccountNavigator = () => {
   return (
     <Stack.Navigator
-    // screenOptions={{
-    //   header: ({scene, previous, navigation}) => {
-    //     const {options} = scene.descriptor;
-    //     const title =
-    //       options.headerTitle !== undefined
-    //         ? options.headerTitle
-    //         : options.title !== undefined
-    //         ? options.title
-    //         : scene.route.name;
-    //     return (
-    //       <Header
-    //         title={title}
-    //         leftButton={previous ? true : false}
-    //         style={options.headerStyle}
-    //         navigation={navigation}
-    //         searchButton={false}
-    //       />
-    //     );
-    //   },
-    // }}>
-    >
-      <Stack.Screen name="Log In" component={AuthScreen} />
+      screenOptions={{
+        header: ({navigation, options}) => {
+          return <Header navigation={navigation} title={options?.title} />;
+        },
+      }}>
+      <Stack.Screen
+        name="Log In"
+        component={AuthScreen}
+        options={{title: 'Log In'}}
+      />
       <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="My Account" component={MyAccountScreen} />
     </Stack.Navigator>
   );
 };

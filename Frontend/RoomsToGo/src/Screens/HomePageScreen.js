@@ -1,10 +1,15 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 
-const HomePageScreen = () => {
+const HomePageScreen = props => {
+  const {navigation} = props;
   return (
     <View>
       <Text>HomePage Screen</Text>
+      <Button
+        onPress={() => navigation.navigate('ProductsPage')}
+        title="Products"
+      />
     </View>
   );
 };
