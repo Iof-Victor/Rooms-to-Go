@@ -4,6 +4,8 @@ import { User } from "../entities/User";
 const bcrypt = require("bcrypt");
 const router = express.Router();
 import { isEmpty } from "class-validator";
+import { datasource } from "../index";
+import { Cart } from "../entities/Cart";
 
 const register = async (req: Request, res: Response, next: any) => {
   const {
@@ -37,6 +39,7 @@ const register = async (req: Request, res: Response, next: any) => {
 
   try {
     const hashPassword = await bcrypt.hash(password, 10);
+
     const user = User.create({
       firstName: firstName,
       lastName: lastName,
@@ -46,7 +49,16 @@ const register = async (req: Request, res: Response, next: any) => {
       phoneNumber: phoneNumber,
       address: address,
     });
-    return res.json(await user.save());
+
+    await user.save();
+
+    const cart = Cart.create({
+      user: user,
+    });
+
+    await cart.save(); // when a user is created we also need to create a cart for it
+
+    return res.json("user creation was a succes");
   } catch (err) {
     console.error("Error while trying to save the user!!");
     return res.status(500).json(err);
