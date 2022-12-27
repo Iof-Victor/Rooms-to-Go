@@ -4,8 +4,10 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToMany,
+  OneToMany,
 } from "typeorm";
 import { Cart } from "./Cart";
+import { CartProduct } from "./CartProduct";
 
 @Entity("products")
 export class Product extends BaseEntity {
@@ -27,6 +29,6 @@ export class Product extends BaseEntity {
   @Column({ nullable: true })
   image: string;
 
-  @ManyToMany(() => Cart)
-  carts: Cart[];
+  @OneToMany(() => CartProduct, (cp) => cp.product)
+  cartConnect: Promise<CartProduct[]>;
 }

@@ -8,7 +8,9 @@ import {
   ManyToOne,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
+import { CartProduct } from "./CartProduct";
 import { Product } from "./Product";
 import { User } from "./User";
 
@@ -21,7 +23,6 @@ export class Cart extends BaseEntity {
   @JoinColumn()
   user: User;
 
-  @ManyToMany(() => Product)
-  @JoinTable()
-  products: Product[];
+  @OneToMany(() => CartProduct, (cp) => cp.cart)
+  productConnect: Promise<CartProduct[]>;
 }
