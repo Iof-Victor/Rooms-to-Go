@@ -8,6 +8,7 @@ import { userRouter } from "./routes/users.routes";
 import { productRouter } from "./routes/products.routes";
 import { cartRouter } from "./routes/carts.routes";
 import { Cart } from "./entities/Cart";
+import { CartProduct } from "./entities/CartProduct";
 
 const app = express();
 
@@ -18,7 +19,7 @@ export const datasource = new DataSource({
   username: process.env.USERNAME,
   password: undefined,
   database: process.env.DB_NAME,
-  entities: [User, Product, Cart],
+  entities: [User, Product, Cart, CartProduct],
   synchronize: true,
 });
 
