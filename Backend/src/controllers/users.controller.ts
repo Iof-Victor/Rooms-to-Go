@@ -7,6 +7,12 @@ import { isEmpty } from "class-validator";
 import { datasource } from "../index";
 import { Cart } from "../entities/Cart";
 
+function validateEmail(email) {
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
 const register = async (req: Request, res: Response, next: any) => {
   const {
     firstName,
@@ -33,6 +39,10 @@ const register = async (req: Request, res: Response, next: any) => {
   if (isUsernameAvailable) errors.username = "Username already exists";
   if (isEmailAvailable) errors.email = "Email already exists";
 
+  if (validateEmail(email) === false) {
+    errors.email = "Please pick a valid email!";
+  }
+
   if (Object.keys(errors).length > 0) {
     return res.status(400).json(errors);
   }
@@ -58,7 +68,7 @@ const register = async (req: Request, res: Response, next: any) => {
 
     await cart.save(); // when a user is created we also need to create a cart for it
 
-    return res.json("user creation was a succes");
+    return res.json(user);
   } catch (err) {
     console.error("Error while trying to save the user!!");
     return res.status(500).json(err);
