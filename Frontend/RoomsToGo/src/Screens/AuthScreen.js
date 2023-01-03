@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ScrollView
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -23,7 +24,7 @@ const AuthScreen = props => {
       </View>
       <View style={styles.inputView}>
         <View style={styles.emailIcon}>
-          <MaterialCommunityIcons name="email" size={40} color="#D9D9D9" />
+          <MaterialCommunityIcons name="email" size={38} color="#D9D9D9" />
         </View>
         <TextInput
           value={email}
@@ -34,7 +35,7 @@ const AuthScreen = props => {
       </View>
       <View style={styles.inputView}>
         <View style={styles.passwordIcon}>
-          <MaterialCommunityIcons name="lock" size={40} color="#D9D9D9" />
+          <MaterialCommunityIcons name="lock" size={38} color="#D9D9D9" />
         </View>
         <TextInput
           value={password}
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -40,
     alignItems: 'center',
-    right: 120,
+    right: 100,
   },
   logo: {
     resizeMode: 'contain',
@@ -89,11 +90,11 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: '#D9D9D9',
     height: 70,
-    width: 350,
+    width: 340,
     borderRadius: 20,
     alignItems: 'center',
     paddingLeft: 20,
-    marginLeft: 15,
+    marginLeft: 25,
   },
   logInButton: {
     backgroundColor: '#9EB7B8',
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
   },
   registerContainer: {
     position: 'absolute',
-    top: 190,
+    top: 175,
     left: -85,
   },
   registerTextContainer: {
@@ -121,14 +122,14 @@ const styles = StyleSheet.create({
   },
   passwordIcon: {
     position: 'absolute',
-    top: 6,
-    right: 345,
+    top: 3,
+    right: 327,
     padding: 10,
   },
   emailIcon: {
     position: 'absolute',
-    top: 6,
-    right: 345,
+    top: 3,
+    right: 330,
     padding: 10,
   },
 });
