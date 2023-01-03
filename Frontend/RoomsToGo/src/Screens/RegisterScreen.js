@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
   },
   logo: {
     resizeMode: 'cover',
-    height: 180,
+    height: 160,
     width: 150,
   },
   inputView: {
     marginBottom: 25,
-    marginTop: 25,
+    marginTop: 20,
     alignItems: 'center',
     marginBottom: 10,
   },
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#9EB7B8',
     position: 'absolute',
     top: 50,
-    left: -50,
+    left: -60,
     width: 150,
     borderRadius: 15,
     height: 50,
