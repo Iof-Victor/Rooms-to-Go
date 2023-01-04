@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import ProductCard from '../Components/ProductCard';
 
 const HomePageScreen = props => {
   const {navigation} = props;
@@ -54,11 +55,16 @@ const HomePageScreen = props => {
           <MaterialCommunityIcons name="bed-king" size={38} color="black" />
         </TouchableOpacity>
       </ScrollView>
-      <Text>HomePage Screen</Text>
-      <Button
-        onPress={() => navigation.navigate('ProductsPage')}
-        title="Products"
-      />
+      <View style={styles.productsContainer}>
+        <ProductCard />
+        <ProductCard />
+      </View>
+      <View>
+        <Button
+          onPress={() => navigation.navigate('ProductsPage')}
+          title="Products"
+        />
+      </View>
     </View>
   );
 };
@@ -72,6 +78,13 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 5,
+  },
+  productsContainer: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: '#C2D8D3',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   welcomeTitle: {
     fontSize: 15,
