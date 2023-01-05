@@ -29,7 +29,6 @@ const MyAccountScreen = props => {
             value={email}
             placeholder="Last Name"
             style={styles.textInput}
-            keyboardTypes="email"
           />
         </View>
         <View style={styles.inputView}>
@@ -45,7 +44,6 @@ const MyAccountScreen = props => {
             value={password}
             placeholder="Phone Number"
             style={styles.textInput}
-            secureTextEntry
           />
         </View>
         <View style={styles.inputView}>
