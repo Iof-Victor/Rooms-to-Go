@@ -68,6 +68,7 @@ const register = async (req: Request, res: Response, next: any) => {
 
     await cart.save(); // when a user is created we also need to create a cart for it
 
+    user.cartId = cart.id;
     return res.json(user);
   } catch (err) {
     console.error("Error while trying to save the user!!");
@@ -77,7 +78,6 @@ const register = async (req: Request, res: Response, next: any) => {
 
 const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
-
   try {
     let errors: any = {};
 
@@ -87,13 +87,17 @@ const login = async (req: Request, res: Response) => {
 
     const user = await User.findOne({ where: { username: username } });
     if (!user) {
-      return res.status(401).send("Invalid username!");
+      errors.text = "This Username does not exist!";
+      return res.status(400).json(errors);
     }
 
     if (user) {
       const hashedPassword = await bcrypt.compare(password, user.password);
 
-      if (!hashedPassword) return res.status(401).json("Invalid password!");
+      if (!hashedPassword) {
+        errors.text = "Invalid Password";
+        return res.status(401).json(errors);
+      }
 
       return res.json(user);
     }

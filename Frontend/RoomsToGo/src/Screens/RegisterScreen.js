@@ -29,11 +29,11 @@ const RegisterScreen = props => {
 
   const handleRegister = async () => {
     if (
-      email.lenght != 0 &&
-      password.lenght != 0 &&
-      username.lenght != 0 &&
-      confirmEmail.lenght != 0 &&
-      confirmPassword.lenght != 0 &&
+      email.length != 0 &&
+      password.length != 0 &&
+      username.length != 0 &&
+      confirmEmail.length != 0 &&
+      confirmPassword.length != 0 &&
       username.length != 0
     ) {
       if (!checkFieldsEquality(password, confirmPassword)) {
