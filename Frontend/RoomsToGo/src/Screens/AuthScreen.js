@@ -6,14 +6,53 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
 
 const AuthScreen = props => {
   const {navigation} = props;
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [alertMessage, setAlertMessage] = useState('');
+  const handleAuth = async () => {
+    if (username.length != 0 && password.length != 0) {
+      try {
+        const res = await axios
+          .post('/loginUser', {
+            username,
+            password,
+          })
+          .catch(function (error) {
+            if (error.response) {
+              // The request was made and the server responded with a status code
+              // that falls out of the range of 2xx
+              setAlertMessage(error.response.data.text);
+            } else if (error.request) {
+              // The request was made but no response was received
+              // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+              // http.ClientRequest in node.js
+              console.log(error.request);
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.log('Error', error.message);
+            }
+          });
+
+        //console.log(1);
+        if (res.data) {
+          console.log(res.data);
+          navigation.navigate('My Account');
+        }
+      } catch {
+        console.log('Login not ok');
+      }
+    } else {
+      setAlertMessage('Please fill in all the fields!');
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -22,15 +61,18 @@ const AuthScreen = props => {
           style={styles.logo}
         />
       </View>
+      <View>
+        <Text style={styles.errorAlert}>{alertMessage}</Text>
+      </View>
       <View style={styles.inputView}>
         <View style={styles.emailIcon}>
           <MaterialCommunityIcons name="email" size={38} color="#D9D9D9" />
         </View>
         <TextInput
-          value={email}
-          placeholder="Email"
+          value={username}
+          placeholder="Username"
           style={styles.textInput}
-          keyboardType="email-address"
+          onChangeText={newText => setUsername(newText)}
         />
       </View>
       <View style={styles.inputView}>
@@ -42,12 +84,15 @@ const AuthScreen = props => {
           placeholder="Password"
           style={styles.textInput}
           secureTextEntry
+          onChangeText={newText => setPassword(newText)}
         />
       </View>
       <View>
         <TouchableOpacity
           style={styles.logInButton}
-          onPress={() => navigation.navigate('My Account')}>
+          onPress={() => {
+            handleAuth();
+          }}>
           <Text style={styles.logInText}>Log In</Text>
         </TouchableOpacity>
       </View>

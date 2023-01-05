@@ -41,4 +41,5 @@ export class User extends BaseEntity {
 
   @Column({ nullable: true })
   address: string;
+  cartId: any;
 }
