@@ -22,7 +22,7 @@ const createProduct = async (req: Request, res: Response) => {
       productName: productName,
       price: price,
       quantity: quantity,
-      image: "",
+      image: image,
     });
     return res.json(await product.save());
   } catch (err) {
