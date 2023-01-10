@@ -62,6 +62,28 @@ const ProductsScreen = () => {
         }}>
         Prev Page
       </Button>
+      <View style={styles.titleContainer}>
+          <MaterialCommunityIcons
+            name="cart"
+            size={38}
+            color="#D9D9D9"
+            style={styles.cartIcon}
+          />
+          <Text style={styles.cartTitle}>My cart</Text>
+        </View>
+        <View style={styles.productsContainer}>
+          <View style={styles.productCard}>
+            <CartProductCard />
+          </View>
+          <View style={styles.productCard}>
+            <CartProductCard />
+          </View>
+          <View style={styles.productCard}>
+            <CartProductCard />
+          </View>
+          <View style={styles.productCard}>
+            <CartProductCard />
+          </View>
     </View>
   );
 };
